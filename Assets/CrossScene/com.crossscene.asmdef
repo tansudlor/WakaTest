@@ -1,0 +1,16 @@
+{
+    "name": "com.crossscene",
+    "rootNamespace": "com.crossscene",
+    "references": [
+        "GUID:5d82202959c2f144ea95e134645b6833"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

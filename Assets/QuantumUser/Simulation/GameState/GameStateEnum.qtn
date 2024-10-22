@@ -1,0 +1,6 @@
+enum GameState{
+        WaitingForPlayers,
+        Countdown,
+        GameStarted,
+        GameOver
+}
