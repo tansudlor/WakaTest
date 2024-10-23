@@ -8,16 +8,9 @@ using UnityEngine;
 
 public unsafe class UIView : QuantumCallbacks
 {
-    /*private enum GameStateEnum
-    {
-        WaitingForPlayers,
-        Countdown,
-        GameStarted,
-        GameOver
-    }*/
-
     public TextMeshProUGUI CountDownTime;
     public TextMeshProUGUI Winner;
+    public TextMeshProUGUI ScoreBoard;
     private QuantumGame _game;
     private FP countdownTime = 3;
     private FP gameTime = 60;
@@ -65,39 +58,37 @@ public unsafe class UIView : QuantumCallbacks
                 EndGame();
                 break;
         }
+
+        if (_session.State == GameState.GameOver)
+        {
+            return;
+        }
+
+        ScoreBoardData();
     }
 
-    private void UpdateCountdown(/*Frame f*/)
+    private void UpdateCountdown()
     {
-        //countdownTime -= f.DeltaTime; // ลดค่า countdown ตามเวลาที่ผ่านไปในแต่ละ Frame
-
+       
         SetText(countdownTime);
         if (countdownTime < 0)
         {
             SetText("GO!!!");
-            //StartGame(f);
+           
         }
         else
         {
-            //Debug.Log($"Countdown: {countdownTime}");
+            
         }
     }
 
-    /*private void StartGame(Frame f)
-    {
-        currentState = GameState.GameStarted;
-        gameTime = 60;
-        Debug.Log("Game started! 60 seconds remaining.");
-
-    }*/
-
-    private void UpdateGameTimer(/*Frame f*/)
+   
+    private void UpdateGameTimer()
     {
         SetText(gameTime);
         if (gameTime < 0)
-        {
-           
-            EndGame();//f);
+        {     
+            EndGame();
         }
         else
         {
@@ -105,24 +96,14 @@ public unsafe class UIView : QuantumCallbacks
         }
     }
 
-    private void EndGame(/*Frame f*/)
+    private void EndGame()
     {
         SetText("Gameover!!!");
-        Debug.Log("Game over! Time's up.");
-        var playerFilter = f.Filter<PlayerLink>();
-        while (playerFilter.Next(out var entity, out var playerLink))
-        {
-            var playerName = f.GetPlayerData(playerLink.Player).PlayerNickname;
-            var playerScore = playerLink.Score;
-            playerScoreDict[playerName] = playerScore;
-        }
         var maxEntry = playerScoreDict.Aggregate((l, r) => l.Value > r.Value ? l : r);
-
         SetWinner(maxEntry.Key + " Win");
 
     }
 
-    // Start is called before the first frame update
     public void SetText(FP time)
     {
         int second = Mathf.RoundToInt(time.AsFloat);
@@ -139,6 +120,21 @@ public unsafe class UIView : QuantumCallbacks
         Winner.gameObject.SetActive(true);
         Winner.text = str;
     }
+
+    private void ScoreBoardData()
+    {
+        ScoreBoard.text = "<b>Score</b>\n";
+        var playerFilter = f.Filter<PlayerLink>();
+        while (playerFilter.Next(out var entity, out var playerLink))
+        {
+            var playerName = f.GetPlayerData(playerLink.Player).PlayerNickname;
+            var playerScore = playerLink.Score;
+            playerScoreDict[playerName] = playerScore;
+            ScoreBoard.text += $"{playerName}: {playerScore}\n";
+        }
+        
+    }
+
 
 }
 

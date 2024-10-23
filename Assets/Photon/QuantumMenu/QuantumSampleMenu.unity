@@ -465,6 +465,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7243461719588803421, guid: 7d78f8a9ae2bcc1408312ef78f87bdf0, type: 3}
+      propertyPath: ConnectArgs.RuntimePlayers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243461719588803421, guid: 7d78f8a9ae2bcc1408312ef78f87bdf0, type: 3}
       propertyPath: DefaultConnectionArgs.StartGameTimeoutInSeconds
       value: 10
       objectReference: {fileID: 0}

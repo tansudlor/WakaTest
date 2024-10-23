@@ -10,7 +10,6 @@ namespace Quantum
 
         public override void OnInit(Frame f)
         {
-            
             GameSession* gameSession = f.Unsafe.GetPointerSingleton<GameSession>();
             gameSession->State = GameState.WaitingForPlayers;
         }
@@ -24,7 +23,7 @@ namespace Quantum
                 
                 return;
             }
-           Debug.Log(f.PlayerCount);
+           
             if(f.PlayerConnectedCount >= f.PlayerCount)
             {
                 gameSession->State = GameState.Countdown;

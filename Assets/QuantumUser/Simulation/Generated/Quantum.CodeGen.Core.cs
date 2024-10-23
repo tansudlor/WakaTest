@@ -512,29 +512,6 @@ namespace Quantum {
     }
   }
   [StructLayout(LayoutKind.Explicit)]
-  public unsafe partial struct CharacterStats : Quantum.IComponent {
-    public const Int32 SIZE = 16;
-    public const Int32 ALIGNMENT = 8;
-    [FieldOffset(0)]
-    public AssetRef<CharacterSpec> Spec;
-    [FieldOffset(8)]
-    [ExcludeFromPrototype()]
-    public FP Power;
-    public override Int32 GetHashCode() {
-      unchecked { 
-        var hash = 18671;
-        hash = hash * 31 + Spec.GetHashCode();
-        hash = hash * 31 + Power.GetHashCode();
-        return hash;
-      }
-    }
-    public static void Serialize(void* ptr, FrameSerializer serializer) {
-        var p = (CharacterStats*)ptr;
-        AssetRef.Serialize(&p->Spec, serializer);
-        FP.Serialize(&p->Power, serializer);
-    }
-  }
-  [StructLayout(LayoutKind.Explicit)]
   public unsafe partial struct Coin : Quantum.IComponent {
     public const Int32 SIZE = 4;
     public const Int32 ALIGNMENT = 4;
@@ -618,8 +595,6 @@ namespace Quantum {
       BuildSignalsArrayOnComponentRemoved<CharacterController2D>();
       BuildSignalsArrayOnComponentAdded<CharacterController3D>();
       BuildSignalsArrayOnComponentRemoved<CharacterController3D>();
-      BuildSignalsArrayOnComponentAdded<Quantum.CharacterStats>();
-      BuildSignalsArrayOnComponentRemoved<Quantum.CharacterStats>();
       BuildSignalsArrayOnComponentAdded<Quantum.Coin>();
       BuildSignalsArrayOnComponentRemoved<Quantum.Coin>();
       BuildSignalsArrayOnComponentAdded<Quantum.GameSession>();
@@ -702,7 +677,6 @@ namespace Quantum {
       typeRegistry.Register(typeof(CallbackFlags), 4);
       typeRegistry.Register(typeof(CharacterController2D), CharacterController2D.SIZE);
       typeRegistry.Register(typeof(CharacterController3D), CharacterController3D.SIZE);
-      typeRegistry.Register(typeof(Quantum.CharacterStats), Quantum.CharacterStats.SIZE);
       typeRegistry.Register(typeof(Quantum.Coin), Quantum.Coin.SIZE);
       typeRegistry.Register(typeof(ColorRGBA), ColorRGBA.SIZE);
       typeRegistry.Register(typeof(ComponentPrototypeRef), ComponentPrototypeRef.SIZE);
@@ -773,9 +747,8 @@ namespace Quantum {
       typeRegistry.Register(typeof(Quantum._globals_), Quantum._globals_.SIZE);
     }
     static partial void InitComponentTypeIdGen() {
-      ComponentTypeId.Reset(ComponentTypeId.BuiltInComponentCount + 4)
+      ComponentTypeId.Reset(ComponentTypeId.BuiltInComponentCount + 3)
         .AddBuiltInComponents()
-        .Add<Quantum.CharacterStats>(Quantum.CharacterStats.Serialize, null, null, ComponentFlags.None)
         .Add<Quantum.Coin>(Quantum.Coin.Serialize, null, null, ComponentFlags.None)
         .Add<Quantum.GameSession>(Quantum.GameSession.Serialize, null, null, ComponentFlags.Singleton)
         .Add<Quantum.PlayerLink>(Quantum.PlayerLink.Serialize, null, null, ComponentFlags.None)
