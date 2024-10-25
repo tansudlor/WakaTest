@@ -23,7 +23,7 @@ namespace Quantum {
 
       input.Direction  = new FPVector2(x.ToFP(), y.ToFP());
       input.Jump = UnityEngine.Input.GetButton("Jump");
-
+      input.Fire = UnityEngine.Input.GetKey(KeyCode.F);
       callback.SetInput(input, DeterministicInputFlags.Repeatable);
     }
   }

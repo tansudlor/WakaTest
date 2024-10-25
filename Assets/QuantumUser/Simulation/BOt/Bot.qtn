@@ -1,0 +1,10 @@
+component Bot{
+	FPVector2 Position;
+
+}
+
+input {
+
+	FPVector2 Direction;
+
+}

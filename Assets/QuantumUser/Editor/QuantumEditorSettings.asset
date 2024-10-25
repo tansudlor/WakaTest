@@ -20,7 +20,7 @@ MonoBehaviour:
   QuantumToolbarZone: 0
   UsePhotonAppVersionsPostprocessor: 1
   EntityComponentInspectorMode: 2
-  AutoBuildOnSceneSave: 96
-  AutoBuildOnPlaymodeChanged: 96
-  AutoBuildOnBuild: 96
+  AutoBuildOnSceneSave: 366
+  AutoBuildOnPlaymodeChanged: 366
+  AutoBuildOnBuild: 366
   AssetGuidOverrides: []

@@ -50,6 +50,21 @@ namespace Quantum.Prototypes {
   #endif //;
   
   [System.SerializableAttribute()]
+  [Quantum.Prototypes.Prototype(typeof(Quantum.Bot))]
+  public unsafe partial class BotPrototype : ComponentPrototype<Quantum.Bot> {
+    public FPVector2 Position;
+    partial void MaterializeUser(Frame frame, ref Quantum.Bot result, in PrototypeMaterializationContext context);
+    public override Boolean AddToEntity(FrameBase f, EntityRef entity, in PrototypeMaterializationContext context) {
+        Quantum.Bot component = default;
+        Materialize((Frame)f, ref component, in context);
+        return f.Set(entity, component) == SetResult.ComponentAdded;
+    }
+    public void Materialize(Frame frame, ref Quantum.Bot result, in PrototypeMaterializationContext context = default) {
+        result.Position = this.Position;
+        MaterializeUser(frame, ref result, in context);
+    }
+  }
+  [System.SerializableAttribute()]
   [Quantum.Prototypes.Prototype(typeof(Quantum.Coin))]
   public unsafe partial class CoinPrototype : ComponentPrototype<Quantum.Coin> {
     [HideInInspector()]
@@ -88,10 +103,12 @@ namespace Quantum.Prototypes {
   public unsafe partial class InputPrototype : StructPrototype {
     public FPVector2 Direction;
     public Button Jump;
+    public Button Fire;
     partial void MaterializeUser(Frame frame, ref Quantum.Input result, in PrototypeMaterializationContext context);
     public void Materialize(Frame frame, ref Quantum.Input result, in PrototypeMaterializationContext context = default) {
         result.Direction = this.Direction;
         result.Jump = this.Jump;
+        result.Fire = this.Fire;
         MaterializeUser(frame, ref result, in context);
     }
   }

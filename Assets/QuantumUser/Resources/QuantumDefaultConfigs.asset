@@ -36,9 +36,9 @@ MonoBehaviour:
   DefaultWaypointDetectionDistance:
     RawValue: 655
   MovementType: 1
-  VerticalPositioning: 1
+  VerticalPositioning: 2
   Speed:
-    RawValue: 229376
+    RawValue: 65536
   AngularSpeed:
     RawValue: 1310720
   Acceleration:

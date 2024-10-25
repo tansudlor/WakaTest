@@ -6,7 +6,7 @@
     using static UnityEngine.EventSystems.EventTrigger;
 
     [Preserve]
-    public unsafe class CoinSystem : SystemSignalsOnly, ISignalOnTriggerEnter3D
+    public unsafe class CoinSystem : SystemSignalsOnly, ISignalOnTriggerEnter3D ,ISignalSpwanCoinObject
     {
         private EntityRef _lastCoinEntity;
         private bool _coinSpawned = false;
@@ -57,6 +57,13 @@
 
 
         }
+
+        public void SpwanCoinObject(Frame f)
+        {
+            Debug.Log((f.IsPredicted?"send frame ":"receive frame ") + f.Number);
+            SpawnCoin(f);
+        }
+
         private void HandleScorePlayer(Frame f, TriggerInfo3D info)
         {
             PlayerLink* playerLink = f.Unsafe.GetPointer<PlayerLink>(info.Entity);

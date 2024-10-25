@@ -1,6 +1,7 @@
 namespace Quantum
 {
     using Photon.Deterministic;
+    using UnityEngine;
     using UnityEngine.Scripting;
 
     [Preserve]
@@ -8,6 +9,7 @@ namespace Quantum
     {
         public void OnPlayerAdded(Frame f, PlayerRef player, bool firstTime)
         {
+           
             var runtimePlayer = f.GetPlayerData(player);
             var entity = f.Create(runtimePlayer.PlayerAvatar);
 
@@ -36,8 +38,12 @@ namespace Quantum
 
         }
 
+        
+
         public override void Update(Frame f, ref Filter filter)
         {
+            Debug.Log("update");
+            //Debug.Log((f.IsPredicted?"send frame ":"receive frame ") + f.Number);
             var input = f.GetPlayerInput(filter.Link->Player);
 
             var direction = input->Direction;
@@ -50,6 +56,13 @@ namespace Quantum
             if (input->Jump.WasPressed)
             {
                 filter.CharacterController->Jump(f);
+            }
+
+            
+            if (input->Fire.WasPressed)
+            {
+                Debug.Log("Fire");
+                f.Signals.SpwanCoinObject();
             }
 
             filter.CharacterController->Move(f, filter.Entity, direction.XOY);
