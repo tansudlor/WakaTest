@@ -1,8 +1,12 @@
 namespace Quantum
 {
     using Photon.Deterministic;
+    using System;
     using UnityEngine;
     using UnityEngine.Scripting;
+
+
+   
 
     [Preserve]
     public unsafe class MovementSystem : SystemMainThreadFilter<MovementSystem.Filter>, ISignalOnPlayerAdded
@@ -23,7 +27,7 @@ namespace Quantum
             if (f.Unsafe.TryGetPointer<Transform3D>(entity, out var transform))
             {
                 FPVector3 pos = FPVector3.Zero;
-                
+
                 if (player % 2 == 0)
                 {
                     transform->Position = new FPVector3(-player, 2, 0);

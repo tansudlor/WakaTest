@@ -490,9 +490,17 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1313518621160588819, guid: 8488677c686cc8842b34b66b9fa03aff, type: 3}
+      propertyPath: Transform2DVertical.Height.RawValue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1313518621160588819, guid: 8488677c686cc8842b34b66b9fa03aff, type: 3}
       propertyPath: NavMeshPathfinder.InitialTarget.Target
       value: 
       objectReference: {fileID: 1289175028}
+    - target: {fileID: 1313518621160588819, guid: 8488677c686cc8842b34b66b9fa03aff, type: 3}
+      propertyPath: Transform2DVertical.PositionOffset.RawValue
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1313518621160588819, guid: 8488677c686cc8842b34b66b9fa03aff, type: 3}
       propertyPath: NavMeshPathfinder.InitialTarget.Position.X.RawValue
       value: -87818
