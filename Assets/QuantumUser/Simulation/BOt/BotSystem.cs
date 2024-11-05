@@ -6,13 +6,29 @@ namespace Quantum
     using static UnityEngine.EventSystems.EventTrigger;
 
     [Preserve]
-    public unsafe class BotSystem : SystemMainThreadFilter<BotSystem.Filter>
+    public unsafe class BotSystem : SystemMainThreadFilter<BotSystem.Filter>, ISignalOnNavMeshMoveAgent , ISignalOnNavMeshSearchFailed,ISignalOnNavMeshWaypointReached
     {
+        public void OnNavMeshMoveAgent(Frame f, EntityRef entity, FPVector2 desiredDirection)
+        {
+            Debug.Log("OnNavMeshMoveAgent Haha");
+        }
+
+        public void OnNavMeshSearchFailed(Frame f, EntityRef entity, ref bool resetAgent)
+        {
+            Debug.Log("Failed Haha");
+            resetAgent = true;
+        }
+
+        public void OnNavMeshWaypointReached(Frame f, EntityRef entity, FPVector3 waypoint, Navigation.WaypointFlag waypointFlags, ref bool resetAgent)
+        {
+            Debug.Log("OnNavMeshWaypointReached Haha");
+        }
+
         
 
         public override void Update(Frame f, ref Filter filter)
         {
-            Debug.Log("Haaaa");
+           // Debug.Log("Haaaa");
 
             var bot = f.Unsafe.GetPointer<Bot>(filter.Entity);
             if(bot == null)
@@ -41,7 +57,7 @@ namespace Quantum
         public struct Filter
         {
             public EntityRef Entity;
-            public Transform2D* Transform;
+            public Transform3D* Transform;
             public Bot* Bot;
 
 

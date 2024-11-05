@@ -1,6 +1,7 @@
 namespace Quantum
 {
     using Photon.Deterministic;
+    using Quantum.Collections;
     using System;
     using UnityEngine;
     using UnityEngine.Scripting;
@@ -11,6 +12,17 @@ namespace Quantum
     [Preserve]
     public unsafe class MovementSystem : SystemMainThreadFilter<MovementSystem.Filter>, ISignalOnPlayerAdded
     {
+
+        private QDictionary<int, FP> dict;
+        private int count = 0;
+        public override void OnInit(Frame f)
+        {
+            //base.OnInit(f);
+            dict = f.AllocateDictionary(out f.Global->CoinData);
+            
+        }
+
+        
         public void OnPlayerAdded(Frame f, PlayerRef player, bool firstTime)
         {
            
@@ -22,7 +34,7 @@ namespace Quantum
                 Player = player
             };
             f.Add(entity, link);
-
+            
 
             if (f.Unsafe.TryGetPointer<Transform3D>(entity, out var transform))
             {
@@ -46,8 +58,13 @@ namespace Quantum
 
         public override void Update(Frame f, ref Filter filter)
         {
-            Debug.Log("update");
-            //Debug.Log((f.IsPredicted?"send frame ":"receive frame ") + f.Number);
+            dict[count] = FP._0_02;
+
+            /*Debug.Log("count " + count + " + " + f.Number);
+            Debug.Log("dict.Count " + dict.Count);*/
+            /*Debug.Log((f.IsPredicted?"send frame ":"receive frame ") + f.Number);
+            filter.Link->Score += 1;
+            Debug.Log(filter.Link->Score);*/
             var input = f.GetPlayerInput(filter.Link->Player);
 
             var direction = input->Direction;
@@ -70,6 +87,7 @@ namespace Quantum
             }
 
             filter.CharacterController->Move(f, filter.Entity, direction.XOY);
+            count++;
         }
 
         public struct Filter

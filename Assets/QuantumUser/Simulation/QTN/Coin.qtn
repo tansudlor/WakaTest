@@ -1,5 +1,9 @@
-component Coin { 
- 
+component Coin { }
+
+global{
+	
+	dictionary<int,FP> CoinData;
+
 }
 
 signal SpwanCoinObject();

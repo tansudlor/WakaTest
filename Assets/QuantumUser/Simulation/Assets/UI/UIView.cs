@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public unsafe class UIView : QuantumCallbacks
 {
@@ -18,6 +19,7 @@ public unsafe class UIView : QuantumCallbacks
     private Dictionary<string, int> playerScoreDict = new Dictionary<string, int>();
     private Frame f;
     private GameSession _session;
+   
 
     public override void OnUnitySceneLoadDone(QuantumGame game)
     {
@@ -28,6 +30,7 @@ public unsafe class UIView : QuantumCallbacks
     {
         f = _game.Frames.Verified;
         _session = f.GetSingleton<GameSession>();
+        
     }
 
     public void Update()

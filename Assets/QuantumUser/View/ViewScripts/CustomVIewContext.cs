@@ -6,5 +6,6 @@ using Quantum;
 public class CustomViewContext : MonoBehaviour,IQuantumViewContext
 {
     // Start is called before the first frame update
-    public Camera PlayerCamera;
+    public Camera FollowCam;
+    public Camera WorldCam;
 }

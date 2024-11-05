@@ -264,28 +264,72 @@ MonoBehaviour:
       IsTrigger: 0
       ColliderIndex: 4
       MutableMode: 0
+  - Rotation:
+      X:
+        RawValue: 13698
+      Y:
+        RawValue: 0
+      Z:
+        RawValue: 0
+      W:
+        RawValue: 64088
+    Position:
+      X:
+        RawValue: 0
+      Y:
+        RawValue: 23592
+      Z:
+        RawValue: 0
+    PhysicsMaterial:
+      Id:
+        Value: 0
+    ShapeType: 2
+    SphereRadius:
+      RawValue: 0
+    CapsuleRadius:
+      RawValue: 0
+    CapsuleHeight:
+      RawValue: 0
+    BoxExtents:
+      X:
+        RawValue: 707319
+      Y:
+        RawValue: 32768
+      Z:
+        RawValue: 266129
+    SmoothSphereMeshCollisions: 0
+    StaticData:
+      Name: BoxStaticCollider
+      Tag: Untagged
+      Layer: 0
+      Asset:
+        Id:
+          Value: 0
+      IsTrigger: 0
+      ColliderIndex: 5
+      MutableMode: 0
   MapEntities:
   - Components:
-    - rid: 4790830742873571328
-    - rid: 4790830742873571329
-    - rid: 4790830742873571330
-    - rid: 4790830742873571331
-    - rid: 4790830742873571332
-    - rid: 4790830742873571333
+    - rid: 7207930883423076352
+    - rid: 7207930883423076353
+    - rid: 7207930883423076354
+    - rid: 7207930883423076355
+    - rid: 7207930883423076356
+    - rid: 7207930883423076357
   SerializedTriangleDataUncompressedSize: 8
   references:
     version: 2
     RefIds:
-    - rid: 4790830742873571328
+    - rid: 7207930883423076352
       type: {class: Transform3DPrototype, ns: Quantum.Prototypes, asm: Quantum.Engine}
       data:
         Position:
           X:
-            RawValue: 0
+            RawValue: 410255
           Y:
-            RawValue: 176291
+            RawValue: 655360
           Z:
-            RawValue: 538050
+            RawValue: 491520
         Rotation:
           X:
             RawValue: 0
@@ -293,13 +337,13 @@ MonoBehaviour:
             RawValue: 0
           Z:
             RawValue: 0
-    - rid: 4790830742873571329
+    - rid: 7207930883423076353
       type: {class: PhysicsCollider3DPrototype, ns: Quantum.Prototypes, asm: Quantum.Engine}
       data:
         ShapeConfig:
-          ShapeType: 2
+          ShapeType: 1
           SphereRadius:
-            RawValue: 0
+            RawValue: 32768
           CapsuleRadius:
             RawValue: 0
           CapsuleHeight:
@@ -313,11 +357,11 @@ MonoBehaviour:
               RawValue: 0
           BoxExtents:
             X:
-              RawValue: 32768
+              RawValue: 0
             Y:
-              RawValue: 32768
+              RawValue: 0
             Z:
-              RawValue: 32768
+              RawValue: 0
           RotationOffset:
             X:
               RawValue: 0
@@ -332,8 +376,8 @@ MonoBehaviour:
         IsTrigger: 0
         PhysicsMaterial:
           Id:
-            Value: 1221538611647047810
-    - rid: 4790830742873571330
+            Value: 285738921448443404
+    - rid: 7207930883423076354
       type: {class: PhysicsBody3DPrototype, ns: Quantum.Prototypes, asm: Quantum.Engine}
       data:
         Config:
@@ -357,12 +401,12 @@ MonoBehaviour:
           _hasValue: 0
           _value:
             RawValue: 65536
-    - rid: 4790830742873571331
+    - rid: 7207930883423076355
       type: {class: PhysicsCallbacks3DPrototype, ns: Quantum.Prototypes, asm: Quantum.Engine}
       data:
         CallbackFlags:
           Value: 0
-    - rid: 4790830742873571332
+    - rid: 7207930883423076356
       type: {class: NavMeshPathfinderPrototype, ns: Quantum.Prototypes, asm: Quantum.Engine}
       data:
         AgentConfig:
@@ -372,20 +416,21 @@ MonoBehaviour:
           _hasValue: 1
           _value:
             X:
-              RawValue: -87818
+              RawValue: -7864
             Y:
-              RawValue: 20316
+              RawValue: 470548
             Z:
-              RawValue: -78643
+              RawValue: -230686
         InitialTargetNavMesh:
           Id:
             Value: 425472056513134078
-        InitialTargetNavMeshName: NavMesh2
-    - rid: 4790830742873571333
-      type: {class: BotPrototype, ns: Quantum.Prototypes, asm: Quantum.Simulation}
+        InitialTargetNavMeshName: 
+    - rid: 7207930883423076357
+      type: {class: NavMeshSteeringAgentPrototype, ns: Quantum.Prototypes, asm: Quantum.Engine}
       data:
-        Position:
-          X:
-            RawValue: 0
-          Y:
-            RawValue: 0
+        OverrideMaxSpeed: 0
+        OverrideAcceleration: 0
+        MaxSpeed:
+          RawValue: 0
+        Acceleration:
+          RawValue: 0

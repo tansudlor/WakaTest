@@ -28,15 +28,15 @@ MonoBehaviour:
   AutomaticTargetCorrection: 1
   AutomaticTargetCorrectionRadius:
     RawValue: 65536
-  EnableWaypointDetectionAxis: 0
+  EnableWaypointDetectionAxis: 1
   WaypointDetectionAxisExtend:
-    RawValue: 32768
+    RawValue: 327680
   WaypointDetectionAxisOffset:
-    RawValue: 0
+    RawValue: 327680
   DefaultWaypointDetectionDistance:
     RawValue: 655
   MovementType: 1
-  VerticalPositioning: 2
+  VerticalPositioning: 0
   Speed:
     RawValue: 65536
   AngularSpeed:
@@ -45,10 +45,10 @@ MonoBehaviour:
     RawValue: 1310720
   StoppingDistance:
     RawValue: 655
-  AutoBraking: 0
+  AutoBraking: 1
   AutoBrakingDistance:
     RawValue: 32768
-  ClampAgentToNavmesh: 0
+  ClampAgentToNavmesh: 1
   ClampAgentToNavmeshCorrection:
     RawValue: 16384
   AvoidanceType: 2
@@ -260,7 +260,7 @@ MonoBehaviour:
     DefaultNavMeshAgent:
       Id:
         Value: 164188313611116723
-    EnableNavigationCallbacks: 0
+    EnableNavigationCallbacks: 1
     HeightThresholdForWaypoints:
       RawValue: 65536
     HeightThresholdForAvoidance:
@@ -286,6 +286,7 @@ MonoBehaviour:
   Coin:
     Id:
       Value: 1311170584454446682
+  PlayerVisual: {fileID: 0}
 --- !u!114 &1700503546645468871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -436,6 +437,11 @@ MonoBehaviour:
     Children: []
   - SystemType:
       AssemblyQualifiedName: Quantum.GameSessionStateUpdate, game.gamestate
+    SystemName: 
+    StartDisabled: 0
+    Children: []
+  - SystemType:
+      AssemblyQualifiedName: Quantum.BotSystem, game.bot
     SystemName: 
     StartDisabled: 0
     Children: []

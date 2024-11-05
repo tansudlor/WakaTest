@@ -13,7 +13,7 @@ NavMeshProjectSettings:
     cost: 2
   - name: Drop
     cost: 1
-  - name: 
+  - name: foo
     cost: 1
   - name: 
     cost: 1
@@ -76,9 +76,9 @@ NavMeshProjectSettings:
     agentRadius: 0.5
     agentHeight: 2
     agentSlope: 45
-    agentClimb: 0.75
-    ledgeDropHeight: 0
-    maxJumpAcrossDistance: 0
+    agentClimb: 1
+    ledgeDropHeight: 10
+    maxJumpAcrossDistance: 2
     minRegionArea: 2
     manualCellSize: 0
     cellSize: 0.16666667
@@ -94,7 +94,7 @@ NavMeshProjectSettings:
     agentRadius: 0.3
     agentHeight: 3
     agentSlope: 45
-    agentClimb: 1
+    agentClimb: 0.75
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 2
     minRegionArea: 2

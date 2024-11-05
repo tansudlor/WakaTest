@@ -1,6 +1,7 @@
 ﻿namespace Quantum
 {
     using Photon.Deterministic;
+    using Quantum.Collections;
     using UnityEngine;
     using UnityEngine.Scripting;
     using static UnityEngine.EventSystems.EventTrigger;
@@ -42,6 +43,7 @@
 
         public void OnTriggerEnter3D(Frame f, TriggerInfo3D info)
         {
+           
             Debug.Log("  the coin!");
             Debug.Log(info.Other + "     " + info.Entity);
             Debug.Log("f.Has<PlayerLink>(info.Entity) " + f.Has<PlayerLink>(info.Entity));
@@ -54,7 +56,9 @@
                 SpawnCoin(f);
             }
 
-
+            /*Coin* coin = f.Unsafe.GetPointer<Coin>(info.Other);
+            var bC = coin->collect;
+            bC = false;*/
 
         }
 

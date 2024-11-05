@@ -17,7 +17,8 @@ namespace Quantum
         public override void Update(Frame f, ref Filter filter)
         {
             GameSession* gameSession = f.Unsafe.GetPointerSingleton<GameSession>();
-            
+
+           
             if (gameSession == null)
             {
                 

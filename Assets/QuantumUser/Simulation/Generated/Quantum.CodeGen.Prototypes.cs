@@ -85,6 +85,7 @@ namespace Quantum.Prototypes {
     public Quantum.QEnum32<GameState> State;
     public FP TimeStart;
     public FP GameTime;
+    public Int32 ScoreTest;
     partial void MaterializeUser(Frame frame, ref Quantum.GameSession result, in PrototypeMaterializationContext context);
     public override Boolean AddToEntity(FrameBase f, EntityRef entity, in PrototypeMaterializationContext context) {
         Quantum.GameSession component = default;
@@ -95,6 +96,7 @@ namespace Quantum.Prototypes {
         result.State = this.State;
         result.TimeStart = this.TimeStart;
         result.GameTime = this.GameTime;
+        result.ScoreTest = this.ScoreTest;
         MaterializeUser(frame, ref result, in context);
     }
   }

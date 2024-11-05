@@ -6,5 +6,7 @@ namespace Quantum
     {
         [Header("Prototypes")]
         public AssetRef<EntityPrototype> Coin;
+        [Header("Prototypes")]
+        public GameObject PlayerVisual;
     }
 }

@@ -452,8 +452,10 @@ namespace Quantum {
   }
   [StructLayout(LayoutKind.Explicit)]
   public unsafe partial struct _globals_ {
-    public const Int32 SIZE = 800;
+    public const Int32 SIZE = 808;
     public const Int32 ALIGNMENT = 8;
+    [FieldOffset(804)]
+    private fixed Byte _alignment_padding_[4];
     [FieldOffset(0)]
     public AssetRef<Map> Map;
     [FieldOffset(8)]
@@ -479,6 +481,8 @@ namespace Quantum {
     private fixed Byte _input_[240];
     [FieldOffset(792)]
     public BitSet6 PlayerLastConnectionState;
+    [FieldOffset(800)]
+    public QDictionaryPtr<Int32, FP> CoinData;
     public FixedArray<Input> input {
       get {
         fixed (byte* p = _input_) { return new FixedArray<Input>(p, 40, 6); }
@@ -499,8 +503,12 @@ namespace Quantum {
         hash = hash * 31 + PlayerConnectedCount.GetHashCode();
         hash = hash * 31 + HashCodeUtils.GetArrayHashCode(input);
         hash = hash * 31 + PlayerLastConnectionState.GetHashCode();
+        hash = hash * 31 + CoinData.GetHashCode();
         return hash;
       }
+    }
+    partial void ClearPointersPartial(FrameBase f, EntityRef entity) {
+      CoinData = default;
     }
     static partial void SerializeCodeGen(void* ptr, FrameSerializer serializer) {
         var p = (_globals_*)ptr;
@@ -516,6 +524,7 @@ namespace Quantum {
         serializer.Stream.Serialize(&p->PlayerConnectedCount);
         FixedArray.Serialize(p->input, serializer, Statics.SerializeInput);
         Quantum.BitSet6.Serialize(&p->PlayerLastConnectionState, serializer);
+        QDictionary.Serialize(&p->CoinData, serializer, Statics.SerializeInt32, Statics.SerializeFP);
     }
   }
   [StructLayout(LayoutKind.Explicit)]
@@ -562,18 +571,22 @@ namespace Quantum {
     public FP TimeStart;
     [FieldOffset(8)]
     public FP GameTime;
+    [FieldOffset(4)]
+    public Int32 ScoreTest;
     public override Int32 GetHashCode() {
       unchecked { 
         var hash = 10163;
         hash = hash * 31 + (Int32)State;
         hash = hash * 31 + TimeStart.GetHashCode();
         hash = hash * 31 + GameTime.GetHashCode();
+        hash = hash * 31 + ScoreTest.GetHashCode();
         return hash;
       }
     }
     public static void Serialize(void* ptr, FrameSerializer serializer) {
         var p = (GameSession*)ptr;
         serializer.Stream.Serialize((Int32*)&p->State);
+        serializer.Stream.Serialize(&p->ScoreTest);
         FP.Serialize(&p->GameTime, serializer);
         FP.Serialize(&p->TimeStart, serializer);
     }
@@ -702,8 +715,12 @@ namespace Quantum {
     }
   }
   public unsafe partial class Statics {
+    public static FrameSerializer.Delegate SerializeInt32;
+    public static FrameSerializer.Delegate SerializeFP;
     public static FrameSerializer.Delegate SerializeInput;
     static partial void InitStaticDelegatesGen() {
+      SerializeInt32 = (v, s) => {{ s.Stream.Serialize((Int32*)v); }};
+      SerializeFP = FP.Serialize;
       SerializeInput = Quantum.Input.Serialize;
     }
     static partial void RegisterSimulationTypesGen(TypeRegistry typeRegistry) {

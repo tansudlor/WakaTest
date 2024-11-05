@@ -9,10 +9,14 @@ public class QuantimCameraFollow : QuantumEntityViewComponent<CustomViewContext>
 
     private bool localPlayer;
 
+    private bool isFollowCameraPlayer = false;
+    
     public override void OnActivate(Frame frame)
     {
         var link = frame.Get<PlayerLink>(EntityRef);
         localPlayer = Game.PlayerIsLocal(link.Player);
+        
+        
     }
 
 
@@ -22,7 +26,31 @@ public class QuantimCameraFollow : QuantumEntityViewComponent<CustomViewContext>
         {
             return;
         }
-        ViewContext.PlayerCamera.transform.position = transform.position + Offset;
-        ViewContext.PlayerCamera.transform.LookAt(transform);
+
+        if (UnityEngine.Input.GetKeyDown(KeyCode.K))
+        {
+            isFollowCameraPlayer = !isFollowCameraPlayer;
+            if (isFollowCameraPlayer)
+            {
+                ViewContext.WorldCam.gameObject.SetActive(false);
+                ViewContext.FollowCam.gameObject.SetActive(true);
+            }
+            else
+            {
+                ViewContext.WorldCam.gameObject.SetActive(true);
+                ViewContext.FollowCam.gameObject.SetActive(false);
+            }
+            
+        }
+
+        if (isFollowCameraPlayer)
+        {
+            ViewContext.FollowCam.transform.position = transform.position + Offset;
+            ViewContext.FollowCam.transform.LookAt(transform);
+        }
+        
+
+
+        
     }
 }
